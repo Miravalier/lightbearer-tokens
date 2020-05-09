@@ -4,6 +4,7 @@ import re
 import os
 import subprocess
 from pathlib import Path
+import svg
 
 # Counter
 images_processed = 0
