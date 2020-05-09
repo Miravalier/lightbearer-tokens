@@ -26,32 +26,34 @@ ENTITY_OUTPUTS := Neutral/Portraits Hostile/Portraits Neutral/Tokens Hostile/Tok
 OUTPUT_DIRS += $(patsubst %,${ABILITY_ROOT}/%,${ABILITY_OUTPUTS})
 OUTPUT_DIRS += $(patsubst %,${ENTITY_ROOT}/%,${ENTITY_OUTPUTS})
 
+
 ${ABILITY_ROOT}/Neutral/%.svg: abilities/%.svg
 	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
 
 ${ABILITY_ROOT}/Hostile/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#A91212" --shape Square
 
 ${ABILITY_ROOT}/Guardian/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#64AAE8" --shape Square
 
 ${ABILITY_ROOT}/Druid/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#5C451A" --shape Square
 
 ${ABILITY_ROOT}/Assassin/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#81419F" --shape Square
 
 ${ABILITY_ROOT}/Necromancer/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#19A713" --shape Square
 
 ${ABILITY_ROOT}/Cleric/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#FFC932" --shape Square
 
 ${ABILITY_ROOT}/Illusionist/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#FFC9F2" --shape Square
 
 ${ABILITY_ROOT}/Elementalist/%.svg: abilities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#FF7D00" --shape Square
+
 
 ${ENTITY_ROOT}/Neutral/Portraits/%.svg: entities/%.svg
 	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
@@ -60,10 +62,10 @@ ${ENTITY_ROOT}/Neutral/Tokens/%.png: entities/%.svg
 	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Circle
 
 ${ENTITY_ROOT}/Hostile/Portraits/%.svg: entities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
+	${CONVERTER} $< $@ --fg "#A91212" --shape Square
 
 ${ENTITY_ROOT}/Hostile/Tokens/%.png: entities/%.svg
-	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Circle
+	${CONVERTER} $< $@ --fg "#A91212" --shape Circle
 
 
 all: generate
