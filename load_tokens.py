@@ -2,6 +2,7 @@
 
 import re
 import os
+import subprocess
 from pathlib import Path
 
 # Counter
@@ -55,7 +56,8 @@ for image in (p for p in abilities.iterdir() if p.is_file() and p.suffix == '.sv
             image_data
         )
         # Write square version
-        (ability_root / category / image.name).write_text(
+        output = (ability_root / category / image.name)
+        output.write_text(
             recolored_image_data.replace(
                 CIRCLE_BG, SQUARE_BG
             ).replace(
@@ -64,6 +66,8 @@ for image in (p for p in abilities.iterdir() if p.is_file() and p.suffix == '.sv
                 CLIP_PATH, ""
             )
         )
+        #subprocess.run(["convert", str(output), str(output).replace('.svg', '.png')])
+        #subprocess.run(["rm", str(output).replace('.svg', '.png')])
     # Increment counter
     images_processed += 1
 
@@ -95,11 +99,15 @@ for image in (p for p in entities.iterdir() if p.is_file() and p.suffix == '.svg
             image_data
         )
         # Write circle version
-        (entity_root / category / "Tokens" / image.name).write_text(
+        output = (entity_root / category / "Tokens" / image.name)
+        output.write_text(
             recolored_image_data.replace(SQUARE_BG, CIRCLE_BG).replace(SQUARE_CLIP, CIRCLE_CLIP)
         )
+        #subprocess.run(["convert", str(output), str(output).replace('.svg', '.png')])
+        #subprocess.run(["rm", str(output).replace('.svg', '.png')])
         # Write square version
-        (entity_root / category / "Portraits" / image.name).write_text(
+        output = (entity_root / category / "Portraits" / image.name)
+        output.write_text(
             recolored_image_data.replace(
                 CIRCLE_BG, SQUARE_BG
             ).replace(
@@ -108,23 +116,10 @@ for image in (p for p in entities.iterdir() if p.is_file() and p.suffix == '.svg
                 CLIP_PATH, ""
             )
         )
+        #subprocess.run(["convert", str(output), str(output).replace('.svg', '.png')])
+        #subprocess.run(["rm", str(output).replace('.svg', '.png')])
     # Increment counter
     images_processed += 1
 
 
 print("Processed {} images".format(images_processed))
-
-'''
-# Write stamp version
-(ability_root / category / image.name).write_text(
-    recolored_image_data.replace(
-        CIRCLE_BG, ""
-    ).replace(
-        SQUARE_BG, ""
-    ).replace(
-        CIRCLE_CLIP, SQUARE_CLIP
-    ).replace(
-        CLIP_PATH, ""
-    )
-)
-'''
