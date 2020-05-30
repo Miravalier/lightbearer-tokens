@@ -16,13 +16,13 @@ GENERATED_ABILITIES += $(patsubst %,${ABILITY_ROOT}/Cleric/%,${ABILITIES})
 GENERATED_ABILITIES += $(patsubst %,${ABILITY_ROOT}/Illusionist/%,${ABILITIES})
 GENERATED_ABILITIES += $(patsubst %,${ABILITY_ROOT}/Elementalist/%,${ABILITIES})
 
-GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Neutral/Portraits/%.svg,${ENTITIES})
-GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Neutral/Tokens/%.png,${ENTITIES})
-GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Hostile/Portraits/%.svg,${ENTITIES})
-GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Hostile/Tokens/%.png,${ENTITIES})
+GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Neutral/Square/%.svg,${ENTITIES})
+GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Neutral/Circle/%.png,${ENTITIES})
+GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Hostile/Square/%.svg,${ENTITIES})
+GENERATED_ENTITIES += $(patsubst %.svg,${ENTITY_ROOT}/Hostile/Circle/%.png,${ENTITIES})
 
 ABILITY_OUTPUTS := Neutral Hostile Guardian Druid Assassin Necromancer Cleric Illusionist Elementalist
-ENTITY_OUTPUTS := Neutral/Portraits Hostile/Portraits Neutral/Tokens Hostile/Tokens
+ENTITY_OUTPUTS := Neutral/Square Hostile/Square Neutral/Circle Hostile/Circle
 OUTPUT_DIRS += $(patsubst %,${ABILITY_ROOT}/%,${ABILITY_OUTPUTS})
 OUTPUT_DIRS += $(patsubst %,${ENTITY_ROOT}/%,${ENTITY_OUTPUTS})
 
@@ -55,16 +55,16 @@ ${ABILITY_ROOT}/Elementalist/%.svg: abilities/%.svg
 	${CONVERTER} $< $@ --fg "#FF7D00" --shape Square
 
 
-${ENTITY_ROOT}/Neutral/Portraits/%.svg: entities/%.svg
+${ENTITY_ROOT}/Neutral/Square/%.svg: entities/%.svg
 	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Square
 
-${ENTITY_ROOT}/Neutral/Tokens/%.png: entities/%.svg
+${ENTITY_ROOT}/Neutral/Circle/%.png: entities/%.svg
 	${CONVERTER} $< $@ --fg "#FFFFFF" --shape Circle
 
-${ENTITY_ROOT}/Hostile/Portraits/%.svg: entities/%.svg
+${ENTITY_ROOT}/Hostile/Square/%.svg: entities/%.svg
 	${CONVERTER} $< $@ --fg "#A91212" --shape Square
 
-${ENTITY_ROOT}/Hostile/Tokens/%.png: entities/%.svg
+${ENTITY_ROOT}/Hostile/Circle/%.png: entities/%.svg
 	${CONVERTER} $< $@ --fg "#A91212" --shape Circle
 
 
@@ -73,8 +73,4 @@ all: generate
 folders:
 	@mkdir -p ${OUTPUT_DIRS}
 
-misc: default_image.svg
-	@${CONVERTER} $< ${ENTITY_ROOT}/$< --shape Circle
-	@${CONVERTER} $< ${ABILITY_ROOT}/$< --shape Square
-
-generate: folders misc ${GENERATED_ABILITIES} ${GENERATED_ENTITIES}
+generate: folders ${GENERATED_ABILITIES} ${GENERATED_ENTITIES}
